@@ -5,7 +5,7 @@ import SnapKit
 import Then
 
 final class SigninViewController: BaseViewController {
-    private let logoImageView = UIImageView(image: .init(systemName: ""))
+    private let logoImageView = UIImageView(image: AJICon.logo.image.withRenderingMode(.alwaysOriginal))
     private let idTextField = AJTextField(placeholder: "아이디를 입력하세요", header: "아이디", leftImage: AJICon.person.image)
     private let passwordTextField = SecureAJTextField(placeholder: "비밀번호를 입력하세요", header: "비밀번호", leftImage: AJICon.lock.image)
     private let signinButton = AJButton(title: "로그인")
@@ -32,7 +32,8 @@ final class SigninViewController: BaseViewController {
         logoImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(46)
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(56)
+            $0.width.equalTo(79)
+            $0.height.equalTo(35)
         }
         idTextField.snp.makeConstraints {
             $0.top.equalTo(logoImageView.snp.bottom).offset(54)
