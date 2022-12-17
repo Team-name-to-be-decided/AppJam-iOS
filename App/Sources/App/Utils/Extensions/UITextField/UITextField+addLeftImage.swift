@@ -22,4 +22,34 @@ extension UITextField {
         self.leftView = view
         self.leftViewMode = .always
     }
+
+    func addRightImage(image: UIImage, space: CGFloat = 12) {
+        let rightImage = UIImageView(image: image)
+        let view = UIView()
+        view.addSubviews(rightImage)
+        rightImage.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(space)
+            $0.centerY.equalToSuperview()
+        }
+        view.snp.makeConstraints {
+            $0.size.equalTo(34)
+        }
+        self.leftView = view
+        self.leftViewMode = .always
+    }
+
+    func addRightView(view: UIView, space: CGFloat = 12) {
+        let newview = UIView()
+        newview.addSubviews(view)
+        view.snp.makeConstraints {
+            $0.size.equalTo(24)
+            $0.trailing.equalToSuperview().inset(space)
+            $0.centerY.equalToSuperview()
+        }
+        newview.snp.makeConstraints {
+            $0.size.equalTo(34)
+        }
+        self.rightView = newview
+        self.rightViewMode = .always
+    }
 }

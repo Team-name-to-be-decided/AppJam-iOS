@@ -1,13 +1,18 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Then
+import SnapKit
 
-final class AJTextField: UITextField {
+final class SecureAJTextField: UITextField {
     typealias AJColor = AppJamAsset.Colors
     typealias AJFont = AppJamFontFamily.SpoqaHanSansNeo
 
     private let disposeBag = DisposeBag()
     private let leftImage: UIImage?
+    private let secureButton = UIButton().then {
+        $0.setImage(.init(systemName: "eye.slash")?.tintColor(AJColor.darkGray.color), for: .normal)
+    }
 
     init(placeholder: String, header: String? = nil, leftImage: UIImage? = nil) {
         self.leftImage = leftImage
@@ -23,8 +28,9 @@ final class AJTextField: UITextField {
         ])
         self.backgroundColor = AJColor.lightGray.color
         self.layer.cornerRadius = 12
-        self.clearButtonMode = .always
         self.clipsToBounds = true
+        self.isSecureTextEntry = true
+        self.addRightView(view: secureButton)
         bind()
     }
 
@@ -50,6 +56,15 @@ final class AJTextField: UITextField {
                 if let leftImage = owner.leftImage {
                     owner.addLeftImage(image: leftImage.tintColor(AJColor.darkGray.color))
                 }
+            }
+            .disposed(by: disposeBag)
+
+        self.secureButton.rx.tap
+            .bind(with: self) { owner, isSecure in
+                owner.isSecureTextEntry.toggle()
+                let isSecure = owner.isSecureTextEntry
+                let eyeImage = isSecure ? UIImage(systemName: "eye.slash") : .init(systemName: "eye")
+                owner.secureButton.setImage(eyeImage?.tintColor(AJColor.darkGray.color), for: .normal)
             }
             .disposed(by: disposeBag)
     }
