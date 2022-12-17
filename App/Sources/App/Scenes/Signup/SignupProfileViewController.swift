@@ -19,8 +19,23 @@ final class SignupProfileViewController: BaseViewController {
     private let selfIntroduceTextField = AJTextField(placeholder: "  예) 관련 링크 (List,Optional), Github 등등", header: "자기소개")
     private let completeButton = AJButton(title: "2/3")
     
+    let contentView = UIView().then{_ in
+        
+    }
+
+    
+    let scrollView = UIScrollView().then{
+        $0.alwaysBounceVertical = true
+        $0.isUserInteractionEnabled = true
+    }
+    
+    
+    
     override func addView() {
-        view.addSubviews(hobbyTextField, jobTextField, interestTextField, skillTextField, contactTextField, selfIntroduceTextField, completeButton)
+        view.addSubviews(scrollView)
+        contentView.addSubviews(hobbyTextField, jobTextField, interestTextField, skillTextField, contactTextField, selfIntroduceTextField, completeButton)
+        scrollView.addSubview(contentView)
+        
     }
     
     override func configureVC() {
@@ -28,9 +43,18 @@ final class SignupProfileViewController: BaseViewController {
     }
     
     override func setLayout() {
+        
+        scrollView.snp.makeConstraints{
+            $0.edges.equalTo(view)
+        }
+        
+        contentView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+            $0.width.height.equalToSuperview()
+        }
 
         hobbyTextField.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(183)
+            $0.top.equalToSuperview().offset(95)
             $0.centerX.equalToSuperview()
             $0.left.equalToSuperview().offset(20)
             $0.height.equalTo(52)
