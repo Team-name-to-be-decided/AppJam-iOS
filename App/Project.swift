@@ -10,7 +10,8 @@ let project = Project.makeModule(
         .SPM.RxRelay,
         .SPM.SnapKit,
         .SPM.Then,
-        .SPM.Reusable
+        .SPM.Reusable,
+        .SPM.Lottie
     ],
     resources: ["Resources/**"],
     infoPlist: .file(path: "Support/Info.plist")

@@ -52,6 +52,7 @@ public enum AppJamAsset {
     public static let person = AppJamImages(name: "Person")
     public static let userCard = AppJamImages(name: "UserCard")
     public static let camera = AppJamImages(name: "camera")
+    public static let doc = AppJamImages(name: "doc")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
