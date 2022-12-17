@@ -46,6 +46,7 @@ public enum AppJamAsset {
     public static let home = AppJamImages(name: "Home")
     public static let lock = AppJamImages(name: "Lock")
     public static let logo = AppJamImages(name: "Logo")
+    public static let myPage = AppJamImages(name: "MyPage")
     public static let person = AppJamImages(name: "Person")
   }
 }
