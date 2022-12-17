@@ -5,6 +5,7 @@ import Then
 class BaseViewController: UIViewController {
     typealias AJColor = AppJamAsset.Colors
     typealias AJFont = AppJamFontFamily.SpoqaHanSansNeo
+    typealias AJICon = AppJamAsset.Icons
 
     let bound = UIScreen.main.bounds
     var disposeBag: DisposeBag = .init()
