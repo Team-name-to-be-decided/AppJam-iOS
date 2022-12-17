@@ -11,12 +11,12 @@ import SnapKit
 
 final class SignupProfileViewController: BaseViewController {
     
-    private let hobbyTextField = AJTextField(placeholder: "  취미를 입력하세요", header: "취미")
-    private let jobTextField = AJTextField(placeholder: "  직무분야를 입력하세요", header: "직무분야")
-    private let interestTextField = AJTextField(placeholder: "  관심분야를 입력하세요", header: "관심분야")
-    private let skillTextField = AJTextField(placeholder: "  기술스택을 입력하세요", header: "기술스택")
-    private let contactTextField = AJTextField(placeholder: "  예) 010-1234-5678", header: "연락처")
-    private let selfIntroduceTextField = AJTextField(placeholder: "  예) 관련 링크 (List,Optional), Github 등등", header: "자기소개")
+    private let hobbyTextField = AJTextField(placeholder: "취미를 입력하세요", header: "취미")
+    private let jobTextField = AJTextField(placeholder: "직무분야를 입력하세요", header: "직무분야")
+    private let interestTextField = AJTextField(placeholder: "관심분야를 입력하세요", header: "관심분야")
+    private let skillTextField = AJTextField(placeholder: "기술스택을 입력하세요", header: "기술스택")
+    private let contactTextField = AJTextField(placeholder: "예) 010-1234-5678", header: "연락처")
+    private let selfIntroduceTextField = AJTextField(placeholder: "예) 관련 링크 (List,Optional), Github 등등", header: "자기소개")
     private let completeButton = AJButton(title: "2/3")
     
     let contentView = UIView().then{_ in

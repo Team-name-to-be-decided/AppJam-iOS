@@ -14,6 +14,8 @@ final class AJTextField: UITextField {
         super.init(frame: .zero)
         if let leftImage {
             self.addLeftImage(image: leftImage.tintColor(AJColor.darkGray.color))
+        } else {
+            self.leftSpace(12)
         }
         if let header {
             self.addHeaderLabel(title: header)
