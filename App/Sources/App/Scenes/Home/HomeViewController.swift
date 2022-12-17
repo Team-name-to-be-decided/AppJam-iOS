@@ -116,6 +116,7 @@ final class HomeViewController: BaseViewController {
 
     override func configureNavigation() {
         self.navigationItem.configTitleImage()
+        self.navigationItem.configBack()
     }
 
     override func bind() {
@@ -144,6 +145,13 @@ final class HomeViewController: BaseViewController {
                 owner.selectedTag = major
                 owner.tagCollectionView.reloadData()
                 owner.cardListRelay.accept(owner.allCardListRelay.value.filter { $0.major == major || major == .all })
+            }
+            .disposed(by: disposeBag)
+
+        cardCollectionView.rx.modelSelected(CardEntity.self)
+            .map { _ in CardDetailViewController() }
+            .bind(with: self) { owner, vc in
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }
