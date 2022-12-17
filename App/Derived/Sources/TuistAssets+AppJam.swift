@@ -22,6 +22,10 @@
 public enum AppJamAsset {
   public enum Assets {
     public static let accentColor = AppJamColors(name: "AccentColor")
+    public static let `left` = AppJamImages(name: "left")
+    public static let leftTop = AppJamImages(name: "left_top")
+    public static let lottieAnimation = AppJamData(name: "lottie_animation")
+    public static let `right` = AppJamImages(name: "right")
     public static let selectFirst = AppJamImages(name: "selectFirst")
     public static let selectSecond = AppJamImages(name: "selectSecond")
   }
@@ -51,6 +55,7 @@ public enum AppJamAsset {
     public static let home = AppJamImages(name: "Home")
     public static let lock = AppJamImages(name: "Lock")
     public static let logo = AppJamImages(name: "Logo")
+    public static let mixandMatch = AppJamImages(name: "MixandMatch")
     public static let myPage = AppJamImages(name: "MyPage")
     public static let person = AppJamImages(name: "Person")
     public static let sendCard = AppJamImages(name: "SendCard")
@@ -112,6 +117,34 @@ public extension SwiftUI.Color {
   init(asset: AppJamColors) {
     let bundle = AppJamResources.bundle
     self.init(asset.name, bundle: bundle)
+  }
+}
+#endif
+
+public struct AppJamData {
+  public fileprivate(set) var name: String
+
+  #if os(iOS) || os(tvOS) || os(macOS)
+  @available(iOS 9.0, macOS 10.11, *)
+  public var data: NSDataAsset {
+    guard let data = NSDataAsset(asset: self) else {
+      fatalError("Unable to load data asset named \(name).")
+    }
+    return data
+  }
+  #endif
+}
+
+#if os(iOS) || os(tvOS) || os(macOS)
+@available(iOS 9.0, macOS 10.11, *)
+public extension NSDataAsset {
+  convenience init?(asset: AppJamData) {
+    let bundle = AppJamResources.bundle
+    #if os(iOS) || os(tvOS)
+    self.init(name: asset.name, bundle: bundle)
+    #elseif os(macOS)
+    self.init(name: NSDataAsset.Name(asset.name), bundle: bundle)
+    #endif
   }
 }
 #endif
