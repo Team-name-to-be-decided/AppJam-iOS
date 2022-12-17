@@ -5,7 +5,7 @@ protocol CardLayoutDelegate: AnyObject {
 }
 
 final class CardLayout: UICollectionViewFlowLayout {
-    weak var delegate: (any CardLayoutDelegate)?
+    weak var delegate: (any CardLayoutDelegate)? = nil
     private var contentHeight: CGFloat = 0
     
     private var contentWidth: CGFloat = UIScreen.main.bounds.width
