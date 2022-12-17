@@ -3,6 +3,8 @@ import RxSwift
 import Then
 
 class BaseViewController: UIViewController {
+    typealias AJColor = AppJamAsset.Colors
+
     let bound = UIScreen.main.bounds
     var disposeBag: DisposeBag = .init()
     
