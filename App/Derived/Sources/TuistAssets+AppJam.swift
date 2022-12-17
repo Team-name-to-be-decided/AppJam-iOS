@@ -22,6 +22,8 @@
 public enum AppJamAsset {
   public enum Assets {
     public static let accentColor = AppJamColors(name: "AccentColor")
+    public static let selectFirst = AppJamImages(name: "selectFirst")
+    public static let selectSecond = AppJamImages(name: "selectSecond")
   }
   public enum Colors {
     public static let bg = AppJamColors(name: "BG")
@@ -44,6 +46,7 @@ public enum AppJamAsset {
     public static let lock = AppJamImages(name: "Lock")
     public static let logo = AppJamImages(name: "Logo")
     public static let person = AppJamImages(name: "Person")
+    public static let camera = AppJamImages(name: "camera")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
