@@ -23,13 +23,19 @@ class SignupIDViewController: BaseViewController{
         view.addSubviews(idTextField, pwTextField, completeButton)
     }
     
+    override func configureVC() {
+        self.navigationItem.configTitle(title: "SIGN UP")
+        self.navigationItem.configBack()
+        
+    }
+    
     override func setLayout() {
         
         idTextField.snp.makeConstraints {
             $0.height.equalTo(52)
             $0.centerX.equalToSuperview()
             $0.left.equalToSuperview().offset(20)
-            $0.top.equalToSuperview().offset(183)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(95)
         }
         
         pwTextField.snp.makeConstraints{
@@ -53,7 +59,15 @@ class SignupIDViewController: BaseViewController{
         }
         .bind(to: completeButton.rx.isEnabled)
         .disposed(by: disposeBag)
-        
+    }
+    
+    override func configureNavigation() {
+        completeButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped(){
+        let nextViewController = SignupProfileViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
 }
 
