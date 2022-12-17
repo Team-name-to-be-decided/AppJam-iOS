@@ -19,12 +19,6 @@ class SignupIDViewController: BaseViewController{
     
     var completeButton = AJButton(title: "1/3")
     
-    
-    override func configureVC() {
-//        view.backgroundColor = .systemYellow
-    
-    }
-    
     override func addView() {
         view.addSubviews(idTextField, pwTextField, completeButton)
     }
@@ -54,26 +48,14 @@ class SignupIDViewController: BaseViewController{
     }
     
     override func bind() {
-//        Observable.zip(idTextField.rx.text.orEmpty, pwTextField.rx.text.orEmpty) {text1, text2 in
-//            return text1.count >= 1 && text2.count >= 1
-//        }
-//        .bind(to: completeButton.rx.isEnabled)
-//        .disposed(by: disposeBag)
-        
         Observable.combineLatest(idTextField.rx.text.orEmpty, pwTextField.rx.text.orEmpty) { text1, text2 in
             return text1.count >= 1 && text2.count >= 1
         }
         .bind(to: completeButton.rx.isEnabled)
         .disposed(by: disposeBag)
         
-//        idTextField.rx.text.orEmpty
-//            .map{ $0.count >= 1}
-//            .bind(to: completeButton.rx.isEnabled)
-//            .disposed(by: disposeBag)
     }
 }
-
-
 
 #if DEBUG
 
