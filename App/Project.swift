@@ -11,7 +11,8 @@ let project = Project.makeModule(
         .SPM.SnapKit,
         .SPM.Then,
         .SPM.Reusable,
-        .SPM.Lottie
+        .SPM.Lottie,
+        .SPM.ViewAnimator
     ],
     resources: ["Resources/**"],
     infoPlist: .file(path: "Support/Info.plist")

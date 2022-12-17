@@ -12,5 +12,6 @@ public extension TargetDependency.SPM {
     static let Then = TargetDependency.external(name: "Then")
     static let Reusable = TargetDependency.external(name: "Reusable")
     static let Lottie = TargetDependency.external(name: "Lottie")
+    static let ViewAnimator = TargetDependency.external(name: "ViewAnimator")
 }
 

@@ -77,6 +77,13 @@ final class CardListViewController: BaseViewController {
                 cell.bind(item)
             }
             .disposed(by: disposeBag)
+
+        cardCollectionView.rx.itemSelected
+            .map { _ in FriendCardDetailViewController() }
+            .bind(with: self) { owner, vc in
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     override func configureNavigation() {
         self.navigationItem.title = "명함목록"

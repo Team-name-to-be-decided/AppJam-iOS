@@ -14,7 +14,7 @@ class BaseViewController: UIViewController {
     @available(*, unavailable)
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = AJColor.bg.color
         setUp()
         addView()
         setLayout()
