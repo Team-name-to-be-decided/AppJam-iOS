@@ -10,6 +10,9 @@
 #elseif os(tvOS) || os(watchOS)
   import UIKit
 #endif
+#if canImport(SwiftUI)
+  import SwiftUI
+#endif
 
 // swiftlint:disable superfluous_disable_command file_length implicit_return
 
@@ -17,7 +20,20 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum AppJamAsset {
-  public static let accentColor = AppJamColors(name: "AccentColor")
+  public enum Assets {
+    public static let accentColor = AppJamColors(name: "AccentColor")
+  }
+  public enum Colors {
+    public static let bg = AppJamColors(name: "BG")
+    public static let black = AppJamColors(name: "Black")
+    public static let darkGray = AppJamColors(name: "DarkGray")
+    public static let gray = AppJamColors(name: "Gray")
+    public static let lightGray = AppJamColors(name: "LightGray")
+    public static let lightPrimary = AppJamColors(name: "LightPrimary")
+    public static let primary = AppJamColors(name: "Primary")
+    public static let veryDarkGray = AppJamColors(name: "VeryDarkGray")
+    public static let white = AppJamColors(name: "White")
+  }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
@@ -40,6 +56,13 @@ public final class AppJamColors {
     return color
   }()
 
+  #if canImport(SwiftUI)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  public private(set) lazy var swiftUIColor: SwiftUI.Color = {
+    SwiftUI.Color(asset: self)
+  }()
+  #endif
+
   fileprivate init(name: String) {
     self.name = name
   }
@@ -58,6 +81,16 @@ public extension AppJamColors.Color {
     #endif
   }
 }
+
+#if canImport(SwiftUI)
+public extension SwiftUI.Color {
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  init(asset: AppJamColors) {
+    let bundle = AppJamResources.bundle
+    self.init(asset.name, bundle: bundle)
+  }
+}
+#endif
 
 // swiftlint:enable all
 // swiftformat:enable all

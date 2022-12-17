@@ -4,11 +4,12 @@ import ProjectDescriptionHelpers
 let project = Project.makeModule(
     name: "AppJam",
     product: .app,
-    packages: [
-        
-    ],
     dependencies: [
-        
+        .SPM.RxSwift,
+        .SPM.RxCocoa,
+        .SPM.RxRelay,
+        .SPM.SnapKit,
+        .SPM.Then
     ],
     resources: ["Resources/**"],
     infoPlist: .file(path: "Support/Info.plist")
