@@ -39,18 +39,20 @@ final class SignupProfileViewController: BaseViewController {
     }
     
     override func configureVC() {
-        self.navigationItem.title = "Profile Card"
     }
     
     override func setLayout() {
+        scrollView.updateContentSize()
+
         
         scrollView.snp.makeConstraints{
-            $0.edges.equalTo(view)
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalToSuperview()
         }
         
         contentView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
-            $0.width.height.equalToSuperview()
+            $0.edges.equalTo(scrollView)
+            $0.width.height.equalTo(scrollView)
         }
 
         hobbyTextField.snp.makeConstraints{
@@ -101,8 +103,13 @@ final class SignupProfileViewController: BaseViewController {
             $0.left.equalToSuperview().offset(20)
             $0.height.equalTo(52)
         }
-        
     }
+    
+    override func configureNavigation() {
+        self.navigationItem.configTitle(title: "Profile Card")
+        self.navigationItem.configBack()
+    }
+    
     
 
 }
