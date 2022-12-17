@@ -22,12 +22,7 @@ class SignupIDViewController: BaseViewController{
     override func addView() {
         view.addSubviews(idTextField, pwTextField, completeButton)
     }
-    
-    override func configureVC() {
-        self.navigationItem.configTitle(title: "SIGN UP")
-        self.navigationItem.configBack()
-        
-    }
+
     
     override func setLayout() {
         
@@ -62,12 +57,15 @@ class SignupIDViewController: BaseViewController{
     }
     
     override func configureNavigation() {
-        completeButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-    }
-    
-    @objc func buttonTapped(){
-        let nextViewController = SignupProfileViewController()
-        navigationController?.pushViewController(nextViewController, animated: true)
+        self.navigationItem.configTitle(title: "SIGN UP")
+        self.navigationItem.configBack()
+        completeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let nextView = SignupProfileViewController()
+                self?.navigationController?.pushViewController(nextView, animated: true)
+            }).disposed(by: disposeBag)
+        
+
     }
 }
 
