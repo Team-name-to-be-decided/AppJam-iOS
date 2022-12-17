@@ -15,9 +15,10 @@ class SignupIDViewController: BaseViewController{
         
     var idTextField = AJTextField(placeholder: " 아이디를 입력하세요", header: "아이디", leftImage: AJICon.person.image)
     
-    var pwTextField = AJTextField(placeholder: "비밀번호를 입력하세요", header: "비밀번호", leftImage: AJICon.lock.image)
+    var pwTextField = SecureAJTextField(placeholder: "비밀번호를 입력하세요", header: "비밀번호", leftImage: AJICon.lock.image)
     
     var completeButton = AJButton(title: "1/3")
+    
     
     override func configureVC() {
 //        view.backgroundColor = .systemYellow
@@ -53,11 +54,22 @@ class SignupIDViewController: BaseViewController{
     }
     
     override func bind() {
-        Observable.zip(idTextField.rx.text.orEmpty, pwTextField.rx.text.orEmpty) {text1, text2 in
+//        Observable.zip(idTextField.rx.text.orEmpty, pwTextField.rx.text.orEmpty) {text1, text2 in
+//            return text1.count >= 1 && text2.count >= 1
+//        }
+//        .bind(to: completeButton.rx.isEnabled)
+//        .disposed(by: disposeBag)
+        
+        Observable.combineLatest(idTextField.rx.text.orEmpty, pwTextField.rx.text.orEmpty) { text1, text2 in
             return text1.count >= 1 && text2.count >= 1
         }
         .bind(to: completeButton.rx.isEnabled)
         .disposed(by: disposeBag)
+        
+//        idTextField.rx.text.orEmpty
+//            .map{ $0.count >= 1}
+//            .bind(to: completeButton.rx.isEnabled)
+//            .disposed(by: disposeBag)
     }
 }
 
