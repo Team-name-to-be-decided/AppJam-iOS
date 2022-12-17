@@ -30,7 +30,7 @@ final class MainTabViewController: UITabBarController {
     private let myPageViewController = UINavigationController(rootViewController: MyPageViewController()).then {
         let personImage = AppJamAsset.Icons.person.image.tintColor(AppJamAsset.Colors.darkGray.color)
         let selectedPersonImage = AppJamAsset.Icons.person.image.tintColor(AppJamAsset.Colors.black.color)
-        let personItem = UITabBarItem(title: "주변 사람", image: personImage, selectedImage: selectedPersonImage)
+        let personItem = UITabBarItem(title: "마이페이지", image: personImage, selectedImage: selectedPersonImage)
         $0.tabBarItem = personItem
     }
     
