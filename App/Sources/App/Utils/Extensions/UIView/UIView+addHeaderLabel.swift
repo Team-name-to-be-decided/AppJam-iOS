@@ -7,6 +7,7 @@ extension UIView {
         let titleLabel = UILabel().then {
             $0.text = title
             $0.font = .init(font: AppJamFontFamily.SpoqaHanSansNeo.regular, size: 12)
+            $0.textColor = AppJamAsset.Colors.veryDarkGray.color
         }
         addSubviews(titleLabel)
         titleLabel.snp.makeConstraints {

@@ -28,7 +28,6 @@ final class SecureAJTextField: UITextField {
         ])
         self.backgroundColor = AJColor.lightGray.color
         self.layer.cornerRadius = 12
-        self.clipsToBounds = true
         self.isSecureTextEntry = true
         self.addRightView(view: secureButton)
         bind()

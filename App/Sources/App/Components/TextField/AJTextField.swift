@@ -24,7 +24,6 @@ final class AJTextField: UITextField {
         self.backgroundColor = AJColor.lightGray.color
         self.layer.cornerRadius = 12
         self.clearButtonMode = .always
-        self.clipsToBounds = true
         bind()
     }
 
