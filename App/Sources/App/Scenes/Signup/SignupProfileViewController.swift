@@ -108,10 +108,12 @@ final class SignupProfileViewController: BaseViewController {
     override func configureNavigation() {
         self.navigationItem.configTitle(title: "Profile Card")
         self.navigationItem.configBack()
+        completeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let nextView = SignupSelectViewController()
+                self?.navigationController?.pushViewController(nextView, animated: true)
+            }).disposed(by: disposeBag)
     }
-    
-    
-
 }
 
 #if DEBUG
