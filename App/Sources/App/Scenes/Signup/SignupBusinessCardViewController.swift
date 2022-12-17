@@ -18,6 +18,7 @@ class SignupBusinessCardViewController: BaseViewController {
     
     override func configureNavigation() {
         self.navigationItem.configTitle(title: "Business card")
+        self.navigationItem.configBack()
     }
     
     override func addView() {
@@ -59,6 +60,14 @@ class SignupBusinessCardViewController: BaseViewController {
             $0.left.equalToSuperview().offset(20)
             $0.height.equalTo(52)
         }
+    }
+    
+    override func bind() {
+        completeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let nextView = SignupSucceedViewController()
+                self?.navigationController?.pushViewController(nextView, animated: true)
+            }).disposed(by: disposeBag)
     }
     
 }

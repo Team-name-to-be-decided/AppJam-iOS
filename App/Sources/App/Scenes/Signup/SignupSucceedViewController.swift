@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import Lottie
 
 class SignupSucceedViewController: BaseViewController {
+    
+    let animationView = LottieAnimationView()
+    
+    override func setUp() {
+        animationView.animation = LottieAnimation.named("lottie_animation")
+        
+        animationView.play()
+    }
     
     private let checkIconView : UIImageView = {
         let imageView = UIImageView()
@@ -23,22 +32,20 @@ class SignupSucceedViewController: BaseViewController {
     }
     
     private let subLabel = UILabel().then{
-        $0.text = "지금부터 추혜연님은 서비스명을 이용할 수 있습니다\n 자신이 가진 명함으로 매칭 신청을 해보세요"
+        $0.text = "지금부터 추혜연님은 M&M을 이용할 수 있습니다\n 자신이 가진 명함으로 매칭 신청을 해보세요"
         $0.numberOfLines = 2
         $0.textAlignment = .center
         $0.textColor = AJColor.veryDarkGray.color
         $0.font = UIFont(font: AJFont.regular, size: 12 )
     }
 
-
     private let completeButton = AJButton(title: "매칭 신청하러 가기")
     
     override func addView() {
-        view.addSubviews(checkIconView, completeLabel, subLabel, completeButton)
+        view.addSubviews(checkIconView, completeLabel, subLabel, animationView, completeButton)
     }
     
     override func setLayout() {
-        
         checkIconView.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(250)
@@ -60,5 +67,18 @@ class SignupSucceedViewController: BaseViewController {
             $0.left.equalToSuperview().offset(20)
             $0.height.equalTo(52)
         }
+        
+        animationView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    override func bind() {
+        completeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let nextView = MainTabViewController()
+                nextView.modalPresentationStyle = .fullScreen
+                self?.present(nextView, animated: true)
+            }).disposed(by: disposeBag)
     }
 }
