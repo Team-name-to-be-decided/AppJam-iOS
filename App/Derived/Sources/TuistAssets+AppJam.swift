@@ -43,8 +43,12 @@ public enum AppJamAsset {
     public static let white = AppJamColors(name: "White")
   }
   public enum Icons {
+    public static let card = AppJamImages(name: "Card")
+    public static let cardList = AppJamImages(name: "CardList")
+    public static let home = AppJamImages(name: "Home")
     public static let lock = AppJamImages(name: "Lock")
     public static let logo = AppJamImages(name: "Logo")
+    public static let myPage = AppJamImages(name: "MyPage")
     public static let person = AppJamImages(name: "Person")
     public static let camera = AppJamImages(name: "camera")
   }
