@@ -9,11 +9,14 @@ final class AJTextField: UITextField {
     private let disposeBag = DisposeBag()
     private let leftImage: UIImage?
 
-    init(placeholder: String, leftImage: UIImage? = nil) {
+    init(placeholder: String, header: String? = nil, leftImage: UIImage? = nil) {
         self.leftImage = leftImage
         super.init(frame: .zero)
         if let leftImage {
             self.addLeftImage(image: leftImage.tintColor(AJColor.darkGray.color))
+        }
+        if let header {
+            self.addHeaderLabel(title: header)
         }
         self.attributedPlaceholder = .init(string: placeholder, attributes: [
             .foregroundColor: AJColor.darkGray.color
