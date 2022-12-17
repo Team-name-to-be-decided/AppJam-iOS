@@ -1,6 +1,7 @@
 import UIKit
 import RxSwift
 import Then
+import SnapKit
 
 class BaseViewController: UIViewController {
     typealias AJColor = AppJamAsset.Colors

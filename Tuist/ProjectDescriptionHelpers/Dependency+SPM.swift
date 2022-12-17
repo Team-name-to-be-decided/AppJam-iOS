@@ -10,5 +10,6 @@ public extension TargetDependency.SPM {
     static let RxRelay = TargetDependency.external(name: "RxRelay")
     static let SnapKit = TargetDependency.external(name: "SnapKit")
     static let Then = TargetDependency.external(name: "Then")
+    static let Reusable = TargetDependency.external(name: "Reusable")
 }
 
