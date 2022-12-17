@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class RootViewController: BaseViewController {
-    private let textField = AJTextField(placeholder: "아이디", leftImage: AJICon.lock.image)
+    private let textField = SecureAJTextField(placeholder: "아이디", leftImage: AJICon.lock.image)
     private let textField1 = AJTextField(placeholder: "아이디", leftImage: AJICon.lock.image)
 
     override func addView() {
