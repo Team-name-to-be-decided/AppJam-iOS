@@ -8,11 +8,10 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
 class SignupIDViewController: BaseViewController{
-    
-//    var idTextField : AJTextField!
-//    var pwTextField : AJTextField!
         
     var idTextField = AJTextField(placeholder: " 아이디를 입력하세요", header: "아이디", leftImage: AJICon.person.image)
     
@@ -21,11 +20,12 @@ class SignupIDViewController: BaseViewController{
     var completeButton = AJButton(title: "1/3")
     
     override func configureVC() {
-        view.backgroundColor = .systemYellow
+//        view.backgroundColor = .systemYellow
+    
     }
     
     override func addView() {
-        view.addSubviews(idTextField, pwTextField)
+        view.addSubviews(idTextField, pwTextField, completeButton)
     }
     
     override func setLayout() {
@@ -43,8 +43,24 @@ class SignupIDViewController: BaseViewController{
             $0.left.equalToSuperview().offset(20)
             $0.top.equalTo(idTextField.snp.bottom).offset(57)
         }
+        
+        completeButton.snp.makeConstraints{
+            $0.height.equalTo(52)
+            $0.centerX.equalToSuperview()
+            $0.left.equalToSuperview().offset(20)
+            $0.bottom.equalToSuperview().inset(90)
+        }
+    }
+    
+    override func bind() {
+        Observable.zip(idTextField.rx.text.orEmpty, pwTextField.rx.text.orEmpty) {text1, text2 in
+            return text1.count >= 1 && text2.count >= 1
+        }
+        .bind(to: completeButton.rx.isEnabled)
+        .disposed(by: disposeBag)
     }
 }
+
 
 
 #if DEBUG
