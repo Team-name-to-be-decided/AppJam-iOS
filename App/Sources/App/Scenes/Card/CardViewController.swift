@@ -1,6 +1,8 @@
 import UIKit
 import Combine
 import ViewAnimator
+import RxCocoa
+import RxSwift
 
 final class CardViewController: BaseViewController {
     private let searchingImageView = UIImageView(image: AJICon.connect.image.withRenderingMode(.alwaysOriginal))
@@ -23,7 +25,8 @@ final class CardViewController: BaseViewController {
         $0.textColor = AJColor.black.color
         $0.isHidden = true
     }
-    private let phoneImage = UIImageView(image: .init(systemName: "iphone")).then {
+    private let phoneImage = UIButton().then {
+        $0.setImage(.init(systemName: "iphone")?.tintColor(AJColor.darkGray.color), for: .normal)
         $0.isHidden = true
     }
     private let phoneName = UILabel().then {
@@ -49,6 +52,16 @@ final class CardViewController: BaseViewController {
             self.phoneImage.isHidden = false
             self.phoneName.isHidden = false
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.nearDeviceTitleLabel.isHidden = true
+        self.nearDeviceListBackgroundView.isHidden = true
+        self.phoneImage.isHidden = true
+        self.phoneName.isHidden = true
+        self.searchingImageView.image = AJICon.connect.image
+        self.searchingLabel.text = "명함교환 신청이 완료되었습니다"
     }
     
     override func addView() {
@@ -97,5 +110,14 @@ final class CardViewController: BaseViewController {
                 }
             }
             .store(in: &bag)
+
+        phoneImage.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.nearDeviceListBackgroundView.isHidden = true
+                owner.nearDeviceTitleLabel.isHidden = true
+                owner.searchingImageView.image = AJICon.sendCard.image
+                owner.searchingLabel.text = "명함교환 신청이 완료되었습니다"
+            }
+            .disposed(by: disposeBag)
     }
 }
