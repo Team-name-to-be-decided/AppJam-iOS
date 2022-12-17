@@ -134,11 +134,15 @@ class SignupSelectViewController : BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        completeButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let nextView = SignupBusinessCardViewController()
+                self?.navigationController?.pushViewController(nextView, animated: true)
+            }).disposed(by: disposeBag)
     }
-    
-    
-    
 }
+
 
 
 #if DEBUG

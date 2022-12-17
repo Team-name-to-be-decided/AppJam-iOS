@@ -47,6 +47,7 @@ public enum AppJamAsset {
     public static let cardList = AppJamImages(name: "CardList")
     public static let connect = AppJamImages(name: "Connect")
     public static let friendUserProfile = AppJamImages(name: "FriendUserProfile")
+    public static let check = AppJamImages(name: "Check")
     public static let home = AppJamImages(name: "Home")
     public static let lock = AppJamImages(name: "Lock")
     public static let logo = AppJamImages(name: "Logo")

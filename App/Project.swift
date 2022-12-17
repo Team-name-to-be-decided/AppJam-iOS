@@ -11,6 +11,7 @@ let project = Project.makeModule(
         .SPM.SnapKit,
         .SPM.Then,
         .SPM.Reusable,
+        .SPM.Lottie,
         .SPM.ViewAnimator
     ],
     resources: ["Resources/**"],
