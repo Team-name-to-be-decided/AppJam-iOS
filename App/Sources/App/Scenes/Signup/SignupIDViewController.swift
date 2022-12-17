@@ -64,8 +64,6 @@ class SignupIDViewController: BaseViewController{
                 let nextView = SignupProfileViewController()
                 self?.navigationController?.pushViewController(nextView, animated: true)
             }).disposed(by: disposeBag)
-        
-
     }
 }
 
